@@ -1,5 +1,3 @@
-# ticker_react
-
 <h1> 우리들의 협업 관리 솔루션, ticker </h1>
 
 <br/>
@@ -36,21 +34,17 @@
 <h4> 스토리보드 - 랜딩페이지 </h4>
 <img src="https://github.com/user-attachments/assets/ddc17084-5851-4e68-8d8a-ec9ade77fbe4"/>
 
-
 <br/>
 
 <h4> 스토리보드 - 유저 진입 (이름, 팀 입력) </h4>
 <img src="https://github.com/user-attachments/assets/ed5e2e9c-8ad7-469e-a72a-e0886eca0a43"/>
-
 
 <br/>
 
 <h4> 스토리보드 - 티켓 리스트 </h4>
 <img src="https://github.com/user-attachments/assets/a259542f-ec26-4e34-be8c-cf6dd4d43b8a"/>
 
-
 <br/>
 
 <h4> 스토리보드 - 신규 티켓 생성 </h4>
 <img src="https://github.com/user-attachments/assets/a0ebc86d-5799-437a-8cda-8cf98ecf3798"/>
-

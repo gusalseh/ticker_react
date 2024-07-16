@@ -10,6 +10,8 @@
 
 <h4> 아이디어 분석 / 벤치마킹 </h4>
 ![아이디어 분석_벤치마킹](https://github.com/user-attachments/assets/6a537643-09b3-4ba0-9a23-8e8d72f14cc5)
+![img](https://github.com/user-attachments/assets/6a537643-09b3-4ba0-9a23-8e8d72f14cc5)
+<img src="https://github.com/user-attachments/assets/6a537643-09b3-4ba0-9a23-8e8d72f14cc5"/>
 
 <br/>
 

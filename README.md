@@ -9,9 +9,7 @@
 <hr/>
 
 <h4> 아이디어 분석 / 벤치마킹 </h4>
-![image](https://github.com/user-attachments/assets/86bee8c8-8c2f-46d5-af01-d27ef222e919)
-<br/>
-![아이디어 분석_벤치마킹](https://github.com/user-attachments/assets/54f988f0-a46d-46ad-97f4-034aa1d2209d)
+![아이디어 분석_벤치마킹](https://github.com/user-attachments/assets/6a537643-09b3-4ba0-9a23-8e8d72f14cc5)
 
 <br/>
 

@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../images/oglogo.png";
 import Slogan from "../../images/slogan.png";
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  const [name, setName] = useState("");
+  const [team, setTeam] = useState("");
+
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("./board");
+    navigate("./board", {
+      state: {
+        name,
+        team,
+      },
+    });
   };
 
   return (
@@ -25,12 +33,16 @@ export default function LandingPage() {
               className="w-full p-3 mb-4 input input-bordered"
               name="name"
               placeholder="이름"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
               className="w-full p-3 mb-4 input input-bordered"
               name="team"
               placeholder="소속팀"
+              value={team}
+              onChange={(e) => setTeam(e.target.value)}
             />
             <button
               type="submit"

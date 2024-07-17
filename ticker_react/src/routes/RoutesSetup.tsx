@@ -7,7 +7,7 @@ export default function RoutesSetup() {
   return (
     <Routes>
       <Route path="/" element={<Layout />} />
-      {/* <Route index element={<LandingPage />} /> */}
+      <Route index element={<LandingPage />} />
       <Route path="/board" element={<Board />} />
     </Routes>
   );

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../images/oglogo.png";
 import Slogan from "../../images/slogan.png";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -44,13 +45,13 @@ export default function LandingPage() {
               value={team}
               onChange={(e) => setTeam(e.target.value)}
             />
-            <button
+            <Button
               type="submit"
-              className="w-full btn btn-square bg-orange-400 font-sans"
               onClick={handleButtonClick}
+              optionalStyle="w-full"
             >
               티커 생성
-            </button>
+            </Button>
           </div>
         </div>
       </div>

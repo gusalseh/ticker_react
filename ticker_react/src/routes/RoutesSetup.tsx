@@ -8,8 +8,8 @@ export default function RoutesSetup() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
-        <Route path="/board" element={<Board />} />
       </Route>
+      <Route path="/board" element={<Board />} />
     </Routes>
   );
 }

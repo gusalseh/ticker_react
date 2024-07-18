@@ -1,13 +1,14 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { Title } from "../../components";
 
 export default function Board() {
   const location = useLocation();
   const { name, team } = location.state || {};
 
   return (
-    <div>
-      <h1>Board Page</h1>
+    <section className="mt-4">
+      <Title>{team} Board</Title>
       {name && team ? (
         <div>
           <p>이름: {name}</p>
@@ -16,6 +17,6 @@ export default function Board() {
       ) : (
         <p>이름과 소속팀 정보가 없습니다.</p>
       )}
-    </div>
+    </section>
   );
 }

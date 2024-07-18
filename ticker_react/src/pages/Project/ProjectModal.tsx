@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "../../components";
+import { Icon } from "../../theme/daisyui";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -26,7 +28,14 @@ export default function ProjectModal({
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
       <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-        <h3 className="text-lg font-bold mb-4">새로운 프로젝트 생성</h3>
+        <div className="flex flex-row justify-between">
+          <h3 className="text-lg font-bold mb-4">새로운 프로젝트</h3>
+          <Icon
+            name="remove"
+            className="btn-error btn-xs"
+            onClick={onClose}
+          ></Icon>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -64,20 +73,10 @@ export default function ProjectModal({
               required
             ></textarea>
           </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
+          <div className="flex items-center justify-end">
+            <Button type="submit" optionalStyle="w-30">
               생성
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              취소
-            </button>
+            </Button>
           </div>
         </form>
       </div>

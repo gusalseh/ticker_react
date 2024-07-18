@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button, Title } from "../../components";
 import ProjectModal from "../Project/ProjectModal";
+import { Icon } from "../../theme/daisyui";
 
 interface LocationState {
   name?: string;
@@ -46,7 +47,7 @@ export default function Board() {
         <Title>{team} Board</Title>
       </div>
       <div className="flex justify-between mb-6">
-        <Button onClick={openModal} optionalStyle="py-2 px-4 w-48">
+        <Button onClick={openModal} optionalStyle="py-2 px-4 w-48 ml-4">
           새 프로젝트 생성하기
         </Button>
         {name && team ? (
@@ -65,9 +66,17 @@ export default function Board() {
       />
       <div className="mt-4">
         {projects.map((project) => (
-          <div key={project.id} className="border p-4 mb-2">
-            <h3 className="font-bold">{project.name}</h3>
-            <p>{project.description}</p>
+          <div
+            key={project.id}
+            className="flex flex-row justify-between border p-4 mb-2"
+          >
+            <div>
+              <h3 className="font-bold">{project.name}</h3>
+              <p>{project.description}</p>
+            </div>
+            <div>
+              <Icon name="remove" className="btn-error btn-xs"></Icon>
+            </div>
           </div>
         ))}
       </div>

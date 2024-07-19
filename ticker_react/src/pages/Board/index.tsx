@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Button, Title } from "../../components";
 import ProjectModal from "../Project/ProjectModal";
 import { Icon } from "../../theme/daisyui";
+import { Link } from "react-router-dom";
 
 enum TicketStatus {
   TODO = "todo",
@@ -11,6 +12,12 @@ enum TicketStatus {
   RESOLVED = "resolved",
   CLOSED = "closed",
   ARCHIVED = "archived",
+}
+
+enum TicketPriority {
+  MEDIUM = "medium",
+  HIGH = "high",
+  LOW = "low",
 }
 
 interface LocationState {
@@ -23,22 +30,28 @@ interface Ticket {
   title: string;
   description: string;
   requester: string;
-  request_team: string;
+  team: string;
   status: TicketStatus;
+  priority: TicketPriority;
 }
 
-interface Project {
+export interface Project {
   id: number;
   name: string;
   description: string;
-  tickets: any[]; // 'any' 대신 실제 티켓 타입을 사용할 것
+  tickets: Ticket[];
 }
 
-export default function Board() {
+interface Boardprops {
+  projects: Project[];
+  setProjects: React.Dispatch<React.SetStateAction<Project[]>>;
+}
+
+export default function Board({ projects, setProjects }: Boardprops) {
   const location = useLocation();
   const { name, team } = (location.state as LocationState) || {};
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [projects, setProjects] = useState<Project[]>([]);
+  // const [projects, setProjects] = useState<Project[]>([]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -90,22 +103,24 @@ export default function Board() {
       />
       <div className="mt-4">
         {projects.map((project) => (
-          <div
-            key={project.id}
-            className="flex flex-row justify-between border p-4 mb-2"
-          >
-            <div>
-              <h3 className="font-bold">{project.name}</h3>
-              <p>{project.description}</p>
+          <Link to={`/project/${project.id}`} key={project.id}>
+            <div
+              key={project.id}
+              className="flex flex-row justify-between border p-4 mb-2"
+            >
+              <div>
+                <h3 className="font-bold">{project.name}</h3>
+                <p>{project.description}</p>
+              </div>
+              <div>
+                <Icon
+                  onClick={() => removeProject(project.id)}
+                  name="remove"
+                  className="btn-error btn-xs"
+                ></Icon>
+              </div>
             </div>
-            <div>
-              <Icon
-                onClick={() => removeProject(project.id)}
-                name="remove"
-                className="btn-error btn-xs"
-              ></Icon>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -103,24 +103,24 @@ export default function Board({ projects, setProjects }: Boardprops) {
       />
       <div className="mt-4">
         {projects.map((project) => (
-          <Link to={`/project/${project.id}`} key={project.id}>
-            <div
-              key={project.id}
-              className="flex flex-row justify-between border p-4 mb-2"
-            >
+          <div
+            key={project.id}
+            className="flex flex-row justify-between border p-4 mb-2"
+          >
+            <Link to={`/project/${project.id}`} key={project.id}>
               <div>
                 <h3 className="font-bold">{project.name}</h3>
                 <p>{project.description}</p>
               </div>
-              <div>
-                <Icon
-                  onClick={() => removeProject(project.id)}
-                  name="remove"
-                  className="btn-error btn-xs"
-                ></Icon>
-              </div>
+            </Link>
+            <div>
+              <Icon
+                onClick={() => removeProject(project.id)}
+                name="remove"
+                className="btn-error btn-xs"
+              ></Icon>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

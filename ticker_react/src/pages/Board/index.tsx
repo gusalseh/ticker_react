@@ -4,9 +4,27 @@ import { Button, Title } from "../../components";
 import ProjectModal from "../Project/ProjectModal";
 import { Icon } from "../../theme/daisyui";
 
+enum TicketStatus {
+  TODO = "todo",
+  INPROGRESS = "in progress",
+  PENDING = "pending",
+  RESOLVED = "resolved",
+  CLOSED = "closed",
+  ARCHIVED = "archived",
+}
+
 interface LocationState {
   name?: string;
   team?: string;
+}
+
+interface Ticket {
+  id: number;
+  title: string;
+  description: string;
+  requester: string;
+  request_team: string;
+  status: TicketStatus;
 }
 
 interface Project {
@@ -38,6 +56,12 @@ export default function Board() {
     // setProjects([...projects, newProject]);
     setProjects((prevProjects) => [...prevProjects, newProject]);
     closeModal();
+  };
+
+  const removeProject = (projectId: number) => {
+    setProjects((prevProjects) =>
+      prevProjects.filter((project) => project.id !== projectId)
+    );
   };
 
   return (
@@ -75,7 +99,11 @@ export default function Board() {
               <p>{project.description}</p>
             </div>
             <div>
-              <Icon name="remove" className="btn-error btn-xs"></Icon>
+              <Icon
+                onClick={() => removeProject(project.id)}
+                name="remove"
+                className="btn-error btn-xs"
+              ></Icon>
             </div>
           </div>
         ))}

@@ -21,7 +21,9 @@ export default function RoutesSetup() {
           />
           <Route
             path="project/:projectId"
-            element={<ProjectDetail projects={projects} />}
+            element={
+              <ProjectDetail projects={projects} setProjects={setProjects} />
+            }
           />
         </Route>
         {/* <Route path="/board" element={<Board />} /> */}

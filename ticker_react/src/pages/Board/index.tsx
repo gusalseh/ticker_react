@@ -6,7 +6,7 @@ import { Icon } from "../../theme/daisyui";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../userContext";
 
-enum TicketStatus {
+export enum TicketStatus {
   TODO = "todo",
   INPROGRESS = "in progress",
   PENDING = "pending",
@@ -15,15 +15,10 @@ enum TicketStatus {
   ARCHIVED = "archived",
 }
 
-enum TicketPriority {
+export enum TicketPriority {
   MEDIUM = "medium",
   HIGH = "high",
   LOW = "low",
-}
-
-interface LocationState {
-  name?: string;
-  team?: string;
 }
 
 export interface Ticket {
@@ -49,8 +44,6 @@ interface Boardprops {
 }
 
 export default function Board({ projects, setProjects }: Boardprops) {
-  // const location = useLocation();
-  // const { name, team } = (location.state as LocationState) || {};
   const userContext = useContext(UserContext);
   if (!userContext) {
     throw new Error("UserContext must be used within a UserProvider");
@@ -58,7 +51,6 @@ export default function Board({ projects, setProjects }: Boardprops) {
   const { name, team } = userContext;
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // const [projects, setProjects] = useState<Project[]>([]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -73,6 +65,7 @@ export default function Board({ projects, setProjects }: Boardprops) {
       description: projectDescription,
       tickets: [],
     };
+
     // setProjects([...projects, newProject]);
     setProjects((prevProjects) => [...prevProjects, newProject]);
     closeModal();

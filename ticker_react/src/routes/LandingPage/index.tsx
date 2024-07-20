@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../../images/oglogo.png";
 import Slogan from "../../images/slogan.png";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components";
+import { UserContext } from "../../userContext";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
   const [team, setTeam] = useState("");
 
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+
+  const { setUserInfo } = userContext;
 
   const handleButtonClick = () => {
-    navigate("./board", {
-      state: {
-        name,
-        team,
-      },
-    });
+    setUserInfo(name, team);
+    navigate("./board");
   };
 
   return (

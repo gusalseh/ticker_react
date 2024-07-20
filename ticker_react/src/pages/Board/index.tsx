@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button, Title } from "../../components";
 import ProjectModal from "../Project/ProjectModal";
 import { Icon } from "../../theme/daisyui";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../userContext";
 
 enum TicketStatus {
   TODO = "todo",
@@ -25,7 +26,7 @@ interface LocationState {
   team?: string;
 }
 
-interface Ticket {
+export interface Ticket {
   id: number;
   title: string;
   description: string;
@@ -48,8 +49,14 @@ interface Boardprops {
 }
 
 export default function Board({ projects, setProjects }: Boardprops) {
-  const location = useLocation();
-  const { name, team } = (location.state as LocationState) || {};
+  // const location = useLocation();
+  // const { name, team } = (location.state as LocationState) || {};
+  const userContext = useContext(UserContext);
+  if (!userContext) {
+    throw new Error("UserContext must be used within a UserProvider");
+  }
+  const { name, team } = userContext;
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // const [projects, setProjects] = useState<Project[]>([]);
 

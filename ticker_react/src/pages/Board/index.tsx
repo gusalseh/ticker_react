@@ -107,12 +107,14 @@ export default function Board({ projects, setProjects }: Boardprops) {
             key={project.id}
             className="flex flex-row justify-between border p-4 mb-2"
           >
-            <Link to={`/project/${project.id}`} key={project.id}>
-              <div>
-                <h3 className="font-bold">{project.name}</h3>
-                <p>{project.description}</p>
-              </div>
-            </Link>
+            <div className="w-40">
+              <Link to={`/project/${project.id}`} key={project.id}>
+                <div>
+                  <h3 className="font-bold line-clamp-2">{project.name}</h3>
+                  <p className="line-clamp-3">{project.description}</p>
+                </div>
+              </Link>
+            </div>
             <div>
               <Icon
                 onClick={() => removeProject(project.id)}

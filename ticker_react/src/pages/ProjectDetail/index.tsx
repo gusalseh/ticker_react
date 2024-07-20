@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Project } from "../Board";
 
 interface ProjectDetailProps {
@@ -11,7 +11,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projects }) => {
   const project = projects.find((p) => p.id === Number(projectId));
 
   if (!project) {
-    return <p>프로젝트를 찾을 수 없습니다.</p>;
+    // return <p>프로젝트를 찾을 수 없습니다.</p>;
+    return <Navigate to="/nomatch" replace />;
   }
 
   return (

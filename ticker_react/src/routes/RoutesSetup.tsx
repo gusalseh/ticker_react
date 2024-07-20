@@ -4,6 +4,7 @@ import Board, { Project } from "../pages/Board";
 import Layout from "./Layout";
 import ProjectDetail from "../pages/ProjectDetail";
 import { useState } from "react";
+import NoMatch from "./NoMatch";
 
 export default function RoutesSetup() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -22,6 +23,7 @@ export default function RoutesSetup() {
         />
       </Route>
       {/* <Route path="/board" element={<Board />} /> */}
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 }

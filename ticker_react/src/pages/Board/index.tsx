@@ -139,7 +139,7 @@ import ProjectModal from "../Project/ProjectModal";
 import { Icon } from "../../theme/daisyui";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../userContext";
-import { TicketPriority, TicketStatus } from "../../enums";
+import { TicketStatus, TicketPriority } from "../../enums";
 
 export interface Ticket {
   id: number;

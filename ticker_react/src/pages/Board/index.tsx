@@ -111,8 +111,8 @@ export default function Board({ projects, setProjects }: Boardprops) {
             <div className="w-40 flex-shrink-0">
               <Link to={`/project/${project.id}`} key={project.id}>
                 <div>
-                  <h3 className="font-bold line-clamp-2">{project.name}</h3>
-                  <p className="line-clamp-3">{project.description}</p>
+                  <h3 className="font-bold line-clamp-1">{project.name}</h3>
+                  <p className="line-clamp-2">{project.description}</p>
                 </div>
               </Link>
             </div>

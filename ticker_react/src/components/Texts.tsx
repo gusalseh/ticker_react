@@ -23,6 +23,22 @@ export const Title: FC<TitleProps> = ({
   return <p {...props} className={className} />;
 };
 
+export type SubTitleProps = TitleProps & {};
+
+// <Subtitle> 태그 CSS
+export const SubTitle: FC<SubTitleProps> = ({
+  className: _className,
+  numberOfLines,
+  ...props
+}) => {
+  const className = makeClassName(
+    "text-xl font-bold text-center whitespace-pre-line text-orange-300 mb-10",
+    _className,
+    numberOfLines
+  );
+  return <p {...props} className={className} />;
+};
+
 export const makeClassName = (
   setting: string,
   _className?: string,

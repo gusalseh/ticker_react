@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { Button, Title } from "../../components";
+import { Button, SubTitle, Title } from "../../components";
 import { UserContext } from "../../userContext";
 import { Project, Ticket } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
@@ -69,9 +69,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
   return (
     <div>
-      <div className="items-center mb-4">
+      <div className="items-center mb-4 mt-4">
         <Title>{project.name}</Title>
-        <p className="mb-4">{project.description}</p>
+        {/* <p className="mb-4">{project.description}</p> */}
+        <SubTitle className="mt-2">{project.description}</SubTitle>
         <hr />
       </div>
       <div className="flex justify-between mb-6">

@@ -8,6 +8,9 @@ interface ProjectModalProps {
   onCreateProject: (name: string, description: string) => void;
 }
 
+const PROJECT_NAME_LIMIT = 20;
+const PROJECT_DESCRIPTION_LIMIT = 50;
+
 export default function ProjectModal({
   isOpen,
   onClose,
@@ -18,6 +21,19 @@ export default function ProjectModal({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (projectName.length > PROJECT_NAME_LIMIT) {
+      alert(`프로젝트 이름은 ${PROJECT_NAME_LIMIT}자 이내로 작성해주세요.`);
+      return;
+    }
+
+    if (projectDescription.length > PROJECT_DESCRIPTION_LIMIT) {
+      alert(
+        `프로젝트 설명은 ${PROJECT_DESCRIPTION_LIMIT}자 이내로 작성해주세요.`
+      );
+      return;
+    }
+
     onCreateProject(projectName, projectDescription);
     setProjectName("");
     setProjectDescription("");

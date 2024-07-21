@@ -57,13 +57,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
   };
 
   const removeTicket = (ticketId: number) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((p) =>
-        p.id === Number(projectId)
-          ? { ...p, tickets: p.tickets.filter((t) => t.id !== ticketId) }
-          : p
-      )
+    const isConfirmed = window.confirm(
+      "정말로 이 프로젝트를 삭제하시겠습니까?"
     );
+
+    if (isConfirmed) {
+      setProjects((prevProjects) =>
+        prevProjects.map((p) =>
+          p.id === Number(projectId)
+            ? { ...p, tickets: p.tickets.filter((t) => t.id !== ticketId) }
+            : p
+        )
+      );
+    }
   };
 
   const updateTicketStatus = (ticketId: number, newStatus: TicketStatus) => {

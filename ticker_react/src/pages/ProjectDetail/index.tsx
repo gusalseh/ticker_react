@@ -42,8 +42,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
       id: Date.now(),
       title: ticket.title,
       description: ticket.description,
-      requester: name,
-      team: team,
+      requester: name || "게스트",
+      team: team || "소속팀 없음",
       status: ticket.status,
       priority: ticket.priority,
     };
@@ -57,9 +57,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
   };
 
   const removeTicket = (ticketId: number) => {
-    const isConfirmed = window.confirm(
-      "정말로 이 프로젝트를 삭제하시겠습니까?"
-    );
+    const isConfirmed = window.confirm("정말로 이 티켓을 삭제하시겠습니까?");
 
     if (isConfirmed) {
       setProjects((prevProjects) =>
@@ -202,8 +200,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     }
                   />
                 </div>
-                <div className="col-span-1">{ticket.requester}</div>
-                <div className="col-span-2 flex flex-row justify-between">
+                <div
+                  className={`col-span-1 ${
+                    ticket.requester === "게스트" ? "text-gray-400" : ""
+                  }`}
+                >
+                  {ticket.requester}
+                </div>
+                <div
+                  className={`col-span-2 flex flex-row justify-between ${
+                    ticket.team === "소속팀 없음" ? "text-gray-400" : ""
+                  }`}
+                >
                   {ticket.team}
                   <Icon
                     onClick={() => removeTicket(ticket.id)}

@@ -86,7 +86,7 @@ export default function Board({ projects, setProjects }: Boardprops) {
       <div className="flex justify-between mb-6">
         <Button
           onClick={openModal}
-          optionalStyle="py-2 px-4 w-48 ml-4 rotate-vert-center"
+          optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center "
         >
           새 프로젝트 생성하기
         </Button>

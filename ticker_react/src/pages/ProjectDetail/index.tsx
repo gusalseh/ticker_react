@@ -122,13 +122,30 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         >
           새 티켓 생성하기
         </Button>
-        {name && team ? (
+        {/* {name && team ? (
           <div>
             <p>이름: {name}</p>
             <p>소속팀: {team}</p>
           </div>
         ) : (
           <p>이름과 소속팀 정보가 없습니다.</p>
+        )} */}
+        {name && team ? (
+          <div className="bg-white shadow-md rounded-lg p-4 border border-gray-200 mr-5">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xl">
+                  {name.charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <div>
+                <p className="font-semibold text-lg text-gray-800">{name}</p>
+                <p className="text-sm text-gray-600">{team}</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className="text-gray-500 italic">이름과 소속팀 정보가 없습니다.</p>
         )}
       </div>
       <TicketModal

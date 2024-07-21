@@ -4,6 +4,7 @@ import { Button, SubTitle, Title } from "../../components";
 import { UserContext } from "../../userContext";
 import { Project, Ticket } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
+import { Icon } from "../../theme/daisyui";
 
 interface ProjectDetailProps {
   projects: Project[];
@@ -29,10 +30,6 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
   const { name, team } = userContext;
 
-  // 이미 id가 포함된 완전한 Ticket 객체를 받음
-  // const createTicket = (ticket: Ticket) => {
-
-  // 새로운 id(새로운 티켓)가 생성되는 상황에서 유용
   const createTicket = (ticket: Omit<Ticket, "id">) => {
     const newTicket: Ticket = {
       id: Date.now(),
@@ -43,8 +40,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
       status: ticket.status,
       priority: ticket.priority,
     };
-    setProjects((prevProject) =>
-      prevProject.map((p) =>
+    setProjects((prevProjects) =>
+      prevProjects.map((p) =>
         p.id === Number(projectId)
           ? { ...p, tickets: [...p.tickets, newTicket] }
           : p
@@ -52,20 +49,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
     );
   };
 
+  const removeTicket = (ticketId: number) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((p) =>
+        p.id === Number(projectId)
+          ? { ...p, tickets: p.tickets.filter((t) => t.id !== ticketId) }
+          : p
+      )
+    );
+  };
+
   if (!project) {
-    // return <p>프로젝트를 찾을 수 없습니다.</p>;
     return <Navigate to="/nomatch" replace />;
   }
-
-  // return (
-  //   <div>
-  //     <h1>{project.name}</h1>
-  //     <p>{project.description}</p>
-  //     {/* 추가로 프로젝트에 대한 정보를 표시할 수 있습니다. */}
-  //     <p>{name}</p>
-  //     <p>{team}</p>
-  //   </div>
-  // );
 
   return (
     <div>
@@ -94,20 +90,46 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         onClose={closeModal}
         onCreateTicket={createTicket}
       />
-      <hr />
       <div className="mt-4">
-        {project.tickets.map((ticket) => (
-          <div
-            key={ticket.id}
-            className="flex flex-row justify-between border p-4 mb-2"
-          >
-            <div className="w-40">
-              <h3 className="font-bold line-clamp-2">{ticket.title}</h3>
-              <p className="line-clamp-3">{ticket.description}</p>
+        <div className="grid grid-cols-12 gap-2 font-bold mb-2 px-4 text-sm">
+          <div className="col-span-2">Title</div>
+          <div className="col-span-4">Description</div>
+          <div className="col-span-1">Status</div>
+          <div className="col-span-1">Priority</div>
+          <div className="col-span-2">Requester</div>
+          <div className="col-span-2">Team</div>
+        </div>
+        <hr className="border-t-2 border-gray-300 mb-4" />
+        <div className="space-y-4">
+          {project.tickets.map((ticket) => (
+            <div
+              key={ticket.id}
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
+              <div className="grid grid-cols-12 gap-2 p-4 text-sm items-center">
+                <div className="col-span-2 font-medium">
+                  <p className="text-gray-600 line-clamp-2">{ticket.title}</p>
+                </div>
+                <div className="col-span-4">
+                  <p className="text-gray-600 line-clamp-2">
+                    {ticket.description}
+                  </p>
+                </div>
+                <div className="col-span-1">{ticket.status}</div>
+                <div className="col-span-1">{ticket.priority}</div>
+                <div className="col-span-2">{ticket.requester}</div>
+                <div className="col-span-2 flex flex-row justify-between">
+                  {ticket.team}
+                  <Icon
+                    onClick={() => removeTicket(ticket.id)}
+                    name="remove"
+                    className="btn-error btn-xs cursor-pointer"
+                  />
+                </div>
+              </div>
             </div>
-            <p>우선순위: {ticket.priority}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

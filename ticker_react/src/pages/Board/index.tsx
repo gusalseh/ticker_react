@@ -107,20 +107,17 @@ export default function Board({ projects, setProjects }: Boardprops) {
       />
       <div className="mt-4 pl-5 pr-5">
         {projects.map((project) => (
-          <div
-            key={project.id}
-            className="flex flex-row justify-between border p-4 mb-4"
-          >
-            <div className="w-40">
+          <div key={project.id} className="flex items-stretch border p-4 mb-2">
+            <div className="w-40 flex-shrink-0">
               <Link to={`/project/${project.id}`} key={project.id}>
                 <div>
-                  <h3 className="font-bold line-clamp-1">{project.name}</h3>
-                  <p className="line-clamp-2">{project.description}</p>
+                  <h3 className="font-bold line-clamp-2">{project.name}</h3>
+                  <p className="line-clamp-3">{project.description}</p>
                 </div>
               </Link>
             </div>
-            <div className="overflow-x-auto ml-10 mr-10">
-              <div className="flex space-x-4">
+            <div className="flex-grow overflow-x-auto ml-10 mr-10">
+              <div className="flex space-x-4 pb-4">
                 {project.tickets.map((ticket) => (
                   <div
                     key={ticket.id}
@@ -134,12 +131,12 @@ export default function Board({ projects, setProjects }: Boardprops) {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="flex-shrink-0">
               <Icon
                 onClick={() => removeProject(project.id)}
                 name="remove"
                 className="btn-error btn-xs"
-              ></Icon>
+              />
             </div>
           </div>
         ))}

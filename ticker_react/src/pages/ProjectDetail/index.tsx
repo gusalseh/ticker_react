@@ -134,8 +134,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
           <div className="col-span-2">Title</div>
           <div className="col-span-3">Description</div>
           <div className="col-span-2">Status</div>
-          <div className="col-span-1">Priority</div>
-          <div className="col-span-2">Requester</div>
+          <div className="col-span-2">Priority</div>
+          <div className="col-span-1">Requester</div>
           <div className="col-span-2">Team</div>
         </div>
         <hr className="border-t-2 border-gray-300 mb-4" />
@@ -162,8 +162,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     }
                   />
                 </div>
-                <div className="col-span-1">
-                  {/* <PriorityBadge priority={ticket.priority} /> */}
+                <div className="col-span-2">
                   <PriorityBadge
                     priority={ticket.priority}
                     onChange={(newPriority) =>
@@ -171,7 +170,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     }
                   />
                 </div>
-                <div className="col-span-2">{ticket.requester}</div>
+                <div className="col-span-1">{ticket.requester}</div>
                 <div className="col-span-2 flex flex-row justify-between">
                   {ticket.team}
                   <Icon

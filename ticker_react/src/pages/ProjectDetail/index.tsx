@@ -1,6 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { Button, SubTitle, Title } from "../../components";
+import {
+  Button,
+  PriorityBadge,
+  StatusBadge,
+  SubTitle,
+  Title,
+} from "../../components";
 import { UserContext } from "../../userContext";
 import { Project, Ticket } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
@@ -115,8 +121,12 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                     {ticket.description}
                   </p>
                 </div>
-                <div className="col-span-1">{ticket.status}</div>
-                <div className="col-span-1">{ticket.priority}</div>
+                <div className="col-span-1">
+                  <StatusBadge status={ticket.status} />
+                </div>
+                <div className="col-span-1">
+                  <PriorityBadge priority={ticket.priority} />
+                </div>
                 <div className="col-span-2">{ticket.requester}</div>
                 <div className="col-span-2 flex flex-row justify-between">
                   {ticket.team}

@@ -8,7 +8,7 @@ import {
   Title,
 } from "../../components";
 import { UserContext } from "../../userContext";
-import { Project, Ticket } from "../Board";
+import { Project, Ticket, TicketStatus } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
 import { Icon } from "../../theme/daisyui";
 
@@ -65,6 +65,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
     );
   };
 
+  const updateTicketStatus = (ticketId: number, newStatus: TicketStatus) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((p) =>
+        p.id === Number(projectId)
+          ? {
+              ...p,
+              tickets: p.tickets.map((t) =>
+                t.id === ticketId ? { ...t, status: newStatus } : t
+              ),
+            }
+          : p
+      )
+    );
+  };
+
   if (!project) {
     return <Navigate to="/nomatch" replace />;
   }
@@ -99,8 +114,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
       <div className="mt-4">
         <div className="grid grid-cols-12 gap-2 font-bold mb-2 px-4 text-sm">
           <div className="col-span-2">Title</div>
-          <div className="col-span-4">Description</div>
-          <div className="col-span-1">Status</div>
+          <div className="col-span-3">Description</div>
+          <div className="col-span-2">Status</div>
           <div className="col-span-1">Priority</div>
           <div className="col-span-2">Requester</div>
           <div className="col-span-2">Team</div>
@@ -116,13 +131,18 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                 <div className="col-span-2 font-medium">
                   <p className="text-gray-600 line-clamp-2">{ticket.title}</p>
                 </div>
-                <div className="col-span-4">
+                <div className="col-span-3">
                   <p className="text-gray-600 line-clamp-2">
                     {ticket.description}
                   </p>
                 </div>
-                <div className="col-span-1">
-                  <StatusBadge status={ticket.status} />
+                <div className="col-span-2">
+                  <StatusBadge
+                    status={ticket.status}
+                    onChange={(newStatus) =>
+                      updateTicketStatus(ticket.id, newStatus)
+                    }
+                  />
                 </div>
                 <div className="col-span-1">
                   <PriorityBadge priority={ticket.priority} />

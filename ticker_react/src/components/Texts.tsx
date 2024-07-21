@@ -32,7 +32,7 @@ export const SubTitle: FC<SubTitleProps> = ({
   ...props
 }) => {
   const className = makeClassName(
-    "text-xl font-bold text-center whitespace-pre-line text-orange-300 mb-10",
+    "text-xl font-bold text-center whitespace-pre-line text-orange-300",
     _className,
     numberOfLines
   );

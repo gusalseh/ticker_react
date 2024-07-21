@@ -71,12 +71,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
     <div>
       <div className="items-center mb-4 mt-4">
         <Title>{project.name}</Title>
-        {/* <p className="mb-4">{project.description}</p> */}
         <SubTitle className="mt-2">{project.description}</SubTitle>
-        <hr />
       </div>
       <div className="flex justify-between mb-6">
-        <Button onClick={openModal} optionalStyle="py-2 px-4 w-48 ml-4">
+        <Button
+          onClick={openModal}
+          optionalStyle="py-2 px-4 w-48 ml-4 rotate-vert-center"
+        >
           새 티켓 생성하기
         </Button>
         {name && team ? (
@@ -93,12 +94,17 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         onClose={closeModal}
         onCreateTicket={createTicket}
       />
-      <div>
-        <h2 className="text-xl font-bold mb-2">티켓 목록</h2>
+      <hr />
+      <div className="mt-4">
         {project.tickets.map((ticket) => (
-          <div key={ticket.id} className="border p-2 mb-2">
-            <h3 className="font-bold">{ticket.title}</h3>
-            <p>{ticket.description}</p>
+          <div
+            key={ticket.id}
+            className="flex flex-row justify-between border p-4 mb-2"
+          >
+            <div className="w-40">
+              <h3 className="font-bold line-clamp-2">{ticket.title}</h3>
+              <p className="line-clamp-3">{ticket.description}</p>
+            </div>
             <p>우선순위: {ticket.priority}</p>
           </div>
         ))}

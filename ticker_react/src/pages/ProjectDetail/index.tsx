@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { Button } from "../../components";
+import { Button, Title } from "../../components";
 import { UserContext } from "../../userContext";
 import { Project, Ticket } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
@@ -69,11 +69,24 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">{project.name}</h1>
-      <p className="mb-4">{project.description}</p>
-      <Button onClick={openModal} optionalStyle="py-2 px-4 mb-4">
-        새 티켓 생성하기
-      </Button>
+      <div className="items-center mb-4">
+        <Title>{project.name}</Title>
+        <p className="mb-4">{project.description}</p>
+        <hr />
+      </div>
+      <div className="flex justify-between mb-6">
+        <Button onClick={openModal} optionalStyle="py-2 px-4 w-48 ml-4">
+          새 티켓 생성하기
+        </Button>
+        {name && team ? (
+          <div>
+            <p>이름: {name}</p>
+            <p>소속팀: {team}</p>
+          </div>
+        ) : (
+          <p>이름과 소속팀 정보가 없습니다.</p>
+        )}
+      </div>
       <TicketModal
         isOpen={isModalOpen}
         onClose={closeModal}

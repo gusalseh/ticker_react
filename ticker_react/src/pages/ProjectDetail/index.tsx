@@ -139,7 +139,21 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
             </div>
           </div>
         ) : (
-          <p className="text-gray-500 italic">이름과 소속팀 정보가 없습니다.</p>
+          <div className="bg-white shadow-md rounded-lg p-4 border border-gray-200 mr-5">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xl">
+                  {name ? name.charAt(0).toUpperCase() : "G"}
+                </span>
+              </div>
+              <div>
+                <p className="font-semibold text-lg text-gray-800">
+                  {name || "게스트"}
+                </p>
+                <p className="text-sm text-gray-600">{team || "소속팀 없음"}</p>
+              </div>
+            </div>
+          </div>
         )}
       </div>
       <TicketModal

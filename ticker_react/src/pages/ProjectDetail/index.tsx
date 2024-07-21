@@ -8,7 +8,8 @@ import {
   Title,
 } from "../../components";
 import { UserContext } from "../../userContext";
-import { Project, Ticket, TicketPriority, TicketStatus } from "../Board";
+import { Project, Ticket } from "../Board";
+import { TicketPriority, TicketStatus } from "../../enums";
 import TicketModal from "../Ticket/TicketModal";
 import { Icon } from "../../theme/daisyui";
 

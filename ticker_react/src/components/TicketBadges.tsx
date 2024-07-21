@@ -44,7 +44,7 @@
 // };
 
 import React from "react";
-import { TicketStatus, TicketPriority } from "../pages/Board";
+import { TicketStatus, TicketPriority } from "../enums";
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -88,6 +88,25 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       ))}
     </select>
   );
+};
+
+interface StatusStaticBadgeProps {
+  status: TicketStatus;
+}
+
+export const StatusStaticBadge: React.FC<StatusStaticBadgeProps> = ({
+  status,
+}) => {
+  const statusStyles = {
+    [TicketStatus.TODO]: "bg-gray-200 text-gray-800",
+    [TicketStatus.INPROGRESS]: "bg-blue-200 text-blue-800",
+    [TicketStatus.PENDING]: "bg-yellow-200 text-yellow-800",
+    [TicketStatus.RESOLVED]: "bg-green-200 text-green-800",
+    [TicketStatus.CLOSED]: "bg-red-200 text-red-800",
+    [TicketStatus.ARCHIVED]: "bg-purple-200 text-purple-800",
+  };
+
+  return <Badge className={statusStyles[status]}>{status}</Badge>;
 };
 
 interface PriorityBadgeProps {

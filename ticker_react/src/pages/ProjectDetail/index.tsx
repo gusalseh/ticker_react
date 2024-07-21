@@ -116,20 +116,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         <SubTitle className="mt-2">{project.description}</SubTitle>
       </div>
       <div className="flex justify-between mb-6">
-        <Button
-          onClick={openModal}
-          optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
-        >
-          새 티켓 생성하기
-        </Button>
-        {/* {name && team ? (
-          <div>
-            <p>이름: {name}</p>
-            <p>소속팀: {team}</p>
-          </div>
-        ) : (
-          <p>이름과 소속팀 정보가 없습니다.</p>
-        )} */}
+        <div className="content-center">
+          <Button
+            onClick={openModal}
+            optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
+          >
+            새 티켓 생성하기
+          </Button>
+        </div>
         {name && team ? (
           <div className="bg-white shadow-md rounded-lg p-4 border border-gray-200 mr-5">
             <div className="flex items-center space-x-4">

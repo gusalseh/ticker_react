@@ -74,12 +74,14 @@ export default function Board({ projects, setProjects }: Boardprops) {
         <Title>{team} Board</Title>
       </div>
       <div className="flex justify-between mb-6">
-        <Button
-          onClick={openModal}
-          optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
-        >
-          새 프로젝트 생성하기
-        </Button>
+        <div className="content-center">
+          <Button
+            onClick={openModal}
+            optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
+          >
+            새 프로젝트 생성하기
+          </Button>
+        </div>
         {name && team ? (
           <div className="bg-white shadow-md rounded-lg p-4 border border-gray-200 mr-5">
             <div className="flex items-center space-x-4">

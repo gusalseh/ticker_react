@@ -119,7 +119,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         <div className="content-center">
           <Button
             onClick={openModal}
-            optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
+            optionalStyle="py-2 px-4 w-48 ml-5 rotate-hor-center"
           >
             새 티켓 생성하기
           </Button>
@@ -156,8 +156,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
           <div className="col-span-1">Requester</div>
           <div className="col-span-2">Team</div>
         </div>
-        <hr className="border-t-2 border-gray-300 mb-4" />
-        <div className="space-y-4">
+        <hr className="border-t-2 border-gray-300" />
+        <div className="space-y-2">
           {project.tickets.map((ticket) => (
             <div
               key={ticket.id}

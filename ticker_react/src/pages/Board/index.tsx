@@ -77,7 +77,7 @@ export default function Board({ projects, setProjects }: Boardprops) {
         <div className="content-center">
           <Button
             onClick={openModal}
-            optionalStyle="py-2 px-4 w-48 ml-4 rotate-hor-center"
+            optionalStyle="py-2 px-4 w-48 ml-5 rotate-hor-center"
           >
             새 프로젝트 생성하기
           </Button>
@@ -105,22 +105,22 @@ export default function Board({ projects, setProjects }: Boardprops) {
         onClose={closeModal}
         onCreateProject={createProject}
       />
-      <div className="mt-4">
+      <div className="mt-4 pl-5 pr-5">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="flex flex-row justify-between border p-4 mb-2"
+            className="flex flex-row justify-between border p-4 mb-4"
           >
             <div className="w-40">
               <Link to={`/project/${project.id}`} key={project.id}>
                 <div>
-                  <h3 className="font-bold line-clamp-2">{project.name}</h3>
-                  <p className="line-clamp-3">{project.description}</p>
+                  <h3 className="font-bold line-clamp-1">{project.name}</h3>
+                  <p className="line-clamp-2">{project.description}</p>
                 </div>
               </Link>
             </div>
             <div className="overflow-x-auto ml-10 mr-10">
-              <div className="flex space-x-4 pb-4">
+              <div className="flex space-x-4">
                 {project.tickets.map((ticket) => (
                   <div
                     key={ticket.id}

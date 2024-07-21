@@ -8,7 +8,7 @@ import {
   Title,
 } from "../../components";
 import { UserContext } from "../../userContext";
-import { Project, Ticket, TicketStatus } from "../Board";
+import { Project, Ticket, TicketPriority, TicketStatus } from "../Board";
 import TicketModal from "../Ticket/TicketModal";
 import { Icon } from "../../theme/daisyui";
 
@@ -73,6 +73,24 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
               ...p,
               tickets: p.tickets.map((t) =>
                 t.id === ticketId ? { ...t, status: newStatus } : t
+              ),
+            }
+          : p
+      )
+    );
+  };
+
+  const updateTicketPriority = (
+    ticketId: number,
+    newPriority: TicketPriority
+  ) => {
+    setProjects((prevProjects) =>
+      prevProjects.map((p) =>
+        p.id === Number(projectId)
+          ? {
+              ...p,
+              tickets: p.tickets.map((t) =>
+                t.id === ticketId ? { ...t, priority: newPriority } : t
               ),
             }
           : p
@@ -145,7 +163,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
                   />
                 </div>
                 <div className="col-span-1">
-                  <PriorityBadge priority={ticket.priority} />
+                  {/* <PriorityBadge priority={ticket.priority} /> */}
+                  <PriorityBadge
+                    priority={ticket.priority}
+                    onChange={(newPriority) =>
+                      updateTicketPriority(ticket.id, newPriority)
+                    }
+                  />
                 </div>
                 <div className="col-span-2">{ticket.requester}</div>
                 <div className="col-span-2 flex flex-row justify-between">

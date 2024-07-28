@@ -133,15 +133,17 @@ export default function Board({ projects, setProjects }: Boardprops) {
             <div className="flex-grow overflow-x-auto ml-10 mr-10">
               <div className="flex space-x-4 pb-4">
                 {project.tickets.map((ticket) => (
-                  <div
-                    key={ticket.id}
-                    className="flex-shrink-0 w-40 bg-gray-100 rounded-lg p-3"
-                  >
-                    <h3 className="font-semibold text-sm mb-2 truncate">
-                      {ticket.title}
-                    </h3>
-                    <StatusStaticBadge status={ticket.status} />
-                  </div>
+                  <Link to={`/project/${project.id}`} key={project.id}>
+                    <div
+                      key={ticket.id}
+                      className="flex-shrink-0 w-40 bg-gray-100 rounded-lg p-3"
+                    >
+                      <h3 className="font-semibold text-sm mb-2 truncate">
+                        {ticket.title}
+                      </h3>
+                      <StatusStaticBadge status={ticket.status} />
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

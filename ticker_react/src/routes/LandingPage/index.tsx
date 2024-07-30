@@ -4,6 +4,8 @@ import Slogan from "../../images/slogan.png";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import { UserContext } from "../../userContext";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwt_decode } from "jwt-decode-es";
 
 export default function LandingPage() {
   const [name, setName] = useState("");
@@ -17,6 +19,21 @@ export default function LandingPage() {
   const handleButtonClick = () => {
     setUserInfo(name, team);
     navigate("./board");
+  };
+
+  interface GoogleUser {
+    email: string;
+    name: string;
+    picture: string;
+  }
+
+  const onSuccess = (credentialResponse: any) => {
+    const decoded = jwt_decode(credentialResponse.credential) as GoogleUser;
+    navigate("/board", { state: { user: decoded } });
+  };
+
+  const onError = () => {
+    console.log("Login Failed");
   };
 
   return (
@@ -52,6 +69,9 @@ export default function LandingPage() {
             >
               티커 생성
             </Button>
+            <div className="mt-5 pl-20">
+              <GoogleLogin onSuccess={onSuccess} onError={onError} />
+            </div>
           </div>
         </div>
       </div>
